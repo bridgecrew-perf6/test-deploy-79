@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test site for google ads.</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7622804019226683"
+     crossorigin="anonymous"></script>
+    <style>
+        *{
+            font-family:'Poppins', sans-serif;
+          }
+    </style>
+</head>
+<body>
+
+<h2>To do </h2>
+
+<form action="/" method="POST">
+    {% csrf_token %}
+    {{form.task_name}}
+    <input type="submit" name="create" value="submit">
+
+</form>
+{% for task in tasks %}
+<div>
+    <a href="{% url 'update_task' task.id %} ">Update</a>  <a href="{% url 'delete_task' task.id %} ">Delete</a>
+    {% if task.complete %}
+        <strike>{{task}} </strike>
+    {% else %}
+        <span>{{task}}  </span>
+
+
+    {% endif %}
+
+    <img src="{{task.image.url}}" alt="">
+</div>
+{% endfor %}
+<div style="width:500px; height:500px; margin-top:2em; border:1px solid black;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7622804019226683"
+     crossorigin="anonymous"></script>
+</div>
+
+</body>
+</html>
+
+
